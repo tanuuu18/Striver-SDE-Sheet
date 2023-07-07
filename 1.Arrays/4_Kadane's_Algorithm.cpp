@@ -52,7 +52,7 @@ long long maxSubarraySum(int arr[], int n)
 
         //  __________________________________________
         // |                                          |
-        // |  Time Complexity = O(N*N*N) = O(N^3)     |  //running 3 nested loops
+        // |  Time Complexity = O(N*N) = O(N^2)       |  //running 2 nested loops
 		// |  Space Complexity = O(1)                 |  // not using any extra space
 		// |__________________________________________|
 
