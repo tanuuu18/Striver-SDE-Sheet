@@ -1,5 +1,5 @@
 #include <bits/stdc++.h> 
-vector<int> nextPermutation(vector<int> &permutation, int n){
+vector<int> nextPermutation(vector<int> &nums, int n){
 
     //  <----------------------------- Burte Force Approach ------------------------------------------>
 
@@ -17,5 +17,11 @@ vector<int> nextPermutation(vector<int> &permutation, int n){
 		// |_______________________________________|
 
 
-    
+    // <-------------------- Using Built-in Function ------------------------>
+
+    //    C++ provides an in-built function called next_permutation()
+    //     which directly returns the lexicographically next greater permutation of the input.
+
+    next_permutation(nums.begin(),nums.end());
+	return nums;
 }
