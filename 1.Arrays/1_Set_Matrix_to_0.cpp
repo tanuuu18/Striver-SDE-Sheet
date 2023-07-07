@@ -10,9 +10,9 @@ void setZeros(vector<vector<int>> &nums)
 	// 2. After checking the whole matrix, then change -1 to 0.
 
 	// 3. Final matrix will be our answer.
-	    //  _______________________________________________
-        // |                                               |
-        // |  Time Complexity = O((N*M)+(N+M)) + O(N*M)    |
+	       //   ________________________________________________
+                // |                                               |
+                // |  Time Complexity = O((N*M)+(N+M)) + O(N*M)    |
 		// |  Space Complexity = O(1)                      |
 		// |_______________________________________________|
 		
@@ -85,9 +85,9 @@ void setZeros(vector<vector<int>> &nums)
 
 	// 3. Then Traverse the matrix if either dummyRow or dummyCol is 0 then
     //     make make value of that particular index to 0.
-	    //  _______________________________________
-        // |                                       |
-        // |  Time Complexity = O(2*(N*M))         |
+	        //  _______________________________________
+                // |                                       |
+                // |  Time Complexity = O(2*(N*M))         |
 		// |  Space Complexity = O(N) + O(M)       |
 		// |_______________________________________|
 
