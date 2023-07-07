@@ -10,9 +10,9 @@ void setZeros(vector<vector<int>> &nums)
 	// 2. After checking the whole matrix, then change -1 to 0.
 
 	// 3. Final matrix will be our answer.
-	       //   ________________________________________________
-                // |                                               |
-                // |  Time Complexity = O((N*M)+(N+M)) + O(N*M)    |
+	    //  ________________________________________________
+        // |                                               |
+        // |  Time Complexity = O((N*M)+(N+M)) + O(N*M)    |
 		// |  Space Complexity = O(1)                      |
 		// |_______________________________________________|
 		
@@ -84,32 +84,96 @@ void setZeros(vector<vector<int>> &nums)
 	//        then make 0 in jth index of dummyCol array & ith index of dummyRow array.
 
 	// 3. Then Traverse the matrix if either dummyRow or dummyCol is 0 then
-    //     make make value of that particular index to 0.
-	        //  _______________________________________
-                // |                                       |
-                // |  Time Complexity = O(2*(N*M))         |
+    //    make value of that particular index to 0.
+	    //  _______________________________________
+        // |                                       |
+        // |  Time Complexity = O(2*(N*M))         |
 		// |  Space Complexity = O(N) + O(M)       |
 		// |_______________________________________|
 
+	// int n = nums.size();
+	// int m = nums[0].size();
+
+	// vector<int>dummyRow(n,-1);
+	// vector<int>dummyCol(m,-1);
+
+	// for(int i=0;i<n;i++){
+	// 	for(int j=0;j<m;j++){
+	// 		if(nums[i][j]==0){
+	// 			dummyRow[i]=0;
+	// 			dummyCol[j]=0;
+	// 		}
+	// 	}
+	// }
+
+	// for(int i=0;i<n;i++){
+	// 	for(int j=0;j<m;j++){
+	// 		if(dummyRow[i]==0 || dummyCol[j]==0){
+	// 			nums[i][j]=0;
+	// 		}
+	// 	}
+	// }
+
+
+	//<------------------ Most Optimized Approach -------------------------->
+
+	// Reducing the space complexity
+
+	// 1. Instead of using 2 dummy array ,we will use 1st row and 1st column as dummy row and column.
+        // ___________________________________________________________________________________________________
+	    // |    Problem: 1st row and 1st column as dummy array serve the purpose but nums[0][0] taken twice. |
+        // |                                                                                                 |
+		// |    Solution: Take a variable col0 and initialized it to 1.                                      |
+		// |              Now, 1st row of the matrix will work as dummy row and                              |
+		// |		       1st column of the matrix and col0 will work as dummy column.                      |
+        // |_________________________________________________________________________________________________|
+
+
+	// 2. Then start a loop i and check
+	//        if 0th col is 0 then
+	//            mark col0 = 0 
+	//        start loop j from 1st column and check if element is 0 then
+	//              mark ith index of row -> nums[i][0] as 0  (like ith index of dummy row we marked as 0)
+	//              and mark jth index of col -> nums[0][j] as 0 (like jth index of dummy col we marked as 0)
+ 
+	// 3. Then Traverse the matrix in reverse direction from (n-1 -> 0) & (m-1 -> 0)
+    //    if either ith index of col 0 or jth index of row 0 is 0
+	//         then mark nums[i][j]=0
+	//    and if col0 = 0 then mark ith row of col 0 as 0  (i.e. nums[i][0]=0)
+	    //  _______________________________________
+        // |                                       |
+        // |  Time Complexity = O(2*(N*M))         |
+		// |  Space Complexity = O(1)       |
+		// |_______________________________________|
+
+
 	int n = nums.size();
 	int m = nums[0].size();
+	int col0 = 1;
 
-	vector<int>dummyRow(n,-1);
-	vector<int>dummyCol(m,-1);
 
 	for(int i=0;i<n;i++){
-		for(int j=0;j<m;j++){
+		//check if 0th column is 0 or not
+		if(nums[i][0]==0){
+			col0 = 0;
+		}
+		for(int j=1;j<m;j++){
 			if(nums[i][j]==0){
-				dummyRow[i]=0;
-				dummyCol[j]=0;
+				nums[i][0] = 0;
+				nums[0][j] = 0;
 			}
 		}
 	}
 
-	for(int i=0;i<n;i++){
-		for(int j=0;j<m;j++){
-			if(dummyRow[i]==0 || dummyCol[j]==0){
+    //Traverse the array in reverse direction and checking 
+	//if either row or col has 0 or not the set the matrix accordingly
+	for(int i=n-1;i>=0;i--){
+		for(int j=m-1;j>=1;j--){
+			if(nums[i][0]==0 || nums[0][j]==0){
 				nums[i][j]=0;
+			}
+			if(col0==0){
+				nums[i][0] = 0;
 			}
 		}
 	}
