@@ -57,19 +57,60 @@ long long maxSubarraySum(int arr[], int n)
 		// |__________________________________________|
 
     // to store maximum sum
-    int maxi = INT_MIN;
+    // int maxi = INT_MIN;
+    // for(int i=0;i<n;i++){
+    //     int sum =0;
+    //     for(int j=i;j<n;j++){
+    //         //current subarray sum
+    //         sum += nums[j];
+    //         // if sum is negative
+    //         if(sum<0){
+    //             sum=0;
+    //         }
+    //         //finding the max
+    //         maxi = max(maxi,sum);
+    //     }
+    // }
+    // return maxi;
+
+
+    //<-------------------- Optimal Approach ----------------------------->
+     
+    // Intuition: not consider the subarray as part of answer
+    //             If it's sum less than 0.
+
+    // A subarray with a sum less than 0 will always reduce our answer 
+    // and so this type of subarray cannot be a part of the subarray with maximum sum.
+
+    
+    //   So, we can solve this using a single loop
+
+    // 1. Start loop i = 0 to n-1
+    //         add the current element in to sum
+    //         and update maxi with max result
+    //         if sum is negative then set sum to 0
+
+        //  __________________________________________
+        // |                                          |
+        // |  Time Complexity = O(N)                  |  //running a single loop
+		// |  Space Complexity = O(1)                 |  // not using any extra space
+		// |__________________________________________|
+
+    // To store the maximum sum
+    long long maxi = INT_MIN;
+    long long sum = 0;
     for(int i=0;i<n;i++){
-        int sum =0;
-        for(int j=i;j<n;j++){
-            //current subarray sum
-            sum += nums[j];
-            // if sum is negative
-            if(sum<0){
-                sum=0;
-            }
-            //finding the max
-            maxi = max(maxi,sum);
+        sum += nums[i];
+        maxi = max(maxi,sum);
+        //If sum <0 then discard it
+        if(sum<0){
+            sum = 0;
         }
+    }
+
+    //To consider the sum of empty array as 0
+    if(maxi<0){
+        maxi = 0;
     }
     return maxi;
 
