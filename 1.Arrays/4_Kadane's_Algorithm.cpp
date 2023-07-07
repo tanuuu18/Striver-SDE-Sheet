@@ -137,6 +137,13 @@ long long maxSubarraySum(int arr[], int n)
 
     //Rest of the spproach is same as Kadane's algorithm.
 
+        //  __________________________________________
+        // |                                          |
+        // |  Time Complexity = O(N)                  |  //running a single loop
+		// |  Space Complexity = O(1)                 |  // not using any extra space
+		// |__________________________________________|
+
+
 
     // long long maxi = LONG_MIN;
     // long long sum = 0;
