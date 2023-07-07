@@ -114,4 +114,58 @@ long long maxSubarraySum(int arr[], int n)
     }
     return maxi;
 
+
+
+    //<------------------- Follow up Question -------------------------------->
+
+    // There might be more than one subarray with max sum.We need to print any of them.
+
+    // Intuition: Store the starting index and ending index of the subarray
+    //            so, we can easily get the subarray without storing the subarray elements.
+
+
+    // Observation: Subarray always starts at the particular index where the sum = 0 
+    //              and ends at the ending index where the sum always crosses the
+    //              prev max sum (i.e. maxi)
+
+
+    //    1. Keep track of the starting index inside the loop using start
+    //    2. Take 2 variables ansStart and ansEnd and initialized them with -1
+    //    3. When the sum crosses the max sum
+    //             then set ansStart = start and ansEnd = current index
+
+
+    //Rest of the spproach is same as Kadane's algorithm.
+
+
+    // long long maxi = LONG_MIN;
+    // long long sum = 0;
+
+    // int start = 0;
+    // int ansStart = -1, ansEnd = -1;
+
+    // for(int i=0;i<n;i++){
+    //     if(sum==0){
+    //         start = i; //starting index
+    //     }
+    //     sum += nums[i];
+    //     // if sum crosses maxi
+    //     if(sum>maxi){
+    //         maxi = sum;
+    //         ansStart = start;
+    //         ansEnd = i;
+    //     }
+    //     //if sum < 0 then discard it
+    //     if(sum<0){
+    //         sum = 0;
+    //     }
+    // }
+
+    // cout<<"Subarray: [";
+    // for(int i= ansStart;i<=ansEnd;i++){
+    //     cout<<nums[i]<<" ";
+    // }
+    // cout<<"]";
+
+    // return maxi;
 }
