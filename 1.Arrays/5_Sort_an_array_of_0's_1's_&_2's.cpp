@@ -69,18 +69,43 @@ void sort012(int *nums, int n)
 
     //--------------------Dutch National Flag Algorithm -----------------------------
 
-	This algo contains 3 pointers: low, mid & high 
+	// This algo contains 3 pointers: low, mid & high 
 
-	nums[0...low-1] contains 0. (Extreme left part)
-	nums[low...mid-1] contains 1. 
-	nums[high+1...n-1] contains 2. (Extreme right part)
+	// nums[0...low-1] contains 0. (Extreme left part)
+	// nums[low...mid-1] contains 1. 
+	// nums[high+1...n-1] contains 2. (Extreme right part)
 
-	nums[mid...high] (middle part) is the unsorted segment
+	// nums[mid...high] (middle part) is the unsorted segment
 
 
-	1. Run a loop until mid<=high
-	2. There can be 3 different cases of mid pointer i.e. nums[mid]
-	    -> if(nums[mid]==0)
-		        then swap nums[low] and nums[mid]
+	// 1. Run a loop until mid<=high
+	// 2. There can be 3 different cases of mid pointer i.e. nums[mid]
+	//     -> if(nums[mid]==0)
+	// 	        then swap nums[low] and nums[mid]
+	// 			and increase low and mid by 1.
+	// 	-> if(nums[mid]==1)
+	// 	        then increase mid by 1.
+	// 	-> if(nums[mid]==2)
+	// 	        then swap nums[mid] and nums[high]
+	// 			and decrease high by 1.
+
+
+	//Step 1: Initialize the pointers
+	int low = 0, mid = 0, high = n-1;
+	//Step 2: 
+	while(mid<=high){
+		if(nums[mid]==0){
+			swap(nums[low],nums[mid]);
+			low++;
+			mid++;
+		}
+		else if(nums[mid]==1){
+			mid++;
+		}
+		else{
+			swap(nums[mid],nums[high]);
+			high--;
+		}
+	}
 
 }
