@@ -89,6 +89,12 @@ void sort012(int *nums, int n)
 	// 	        then swap nums[mid] and nums[high]
 	// 			and decrease high by 1.
 
+        //  __________________________________________
+        // |                                          |
+        // |  Time Complexity = O(N)                  |  //running a single loop
+		// |  Space Complexity = O(1)                 |  // not using any extra space
+		// |__________________________________________|
+
 
 	//Step 1: Initialize the pointers
 	int low = 0, mid = 0, high = n-1;
