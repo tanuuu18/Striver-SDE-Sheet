@@ -1,9 +1,19 @@
+
+void inorder(TreeNode *node,vector<int>&in){
+        if(node==NULL) 
+            return;
+        inorder(node->left,in);
+        in.push_back(node->val);
+        inorder(node->right,in);
+    }
+
+
 vector<int> inorderTraversal(TreeNode* root) {
       
     // <------------- Iterative Approach -------------------->
 
     // Intuition: In inorder traversal, the tree is traversed in this way:
-    //            root, left, right.
+    //            left,root, right.
     //            We first visit the left child,
     //            after returning from it we print the current node value,
     //            then we visit the right child. 
@@ -32,24 +42,47 @@ vector<int> inorderTraversal(TreeNode* root) {
 		// |  Space Complexity = O(N)                 |  
 		// |__________________________________________|
 
-    stack<TreeNode *>st;
-    TreeNode *node = root;
-    vector<int>in;
-    while(true){
-        if(node!=NULL){
-            st.push(node);
-            node = node->left;
-        }
-        else{
-            if(st.empty()){
-                break;
-            }
-            node = st.top();
-            st.pop();
-            in.push_back(node->val);
-            node = node->right;
-            }
-        }
-    return in;     
+    // stack<TreeNode *>st;
+    // TreeNode *node = root;
+    // vector<int>in;
+    // while(true){
+    //     if(node!=NULL){
+    //         st.push(node);
+    //         node = node->left;
+    //     }
+    //     else{
+    //         if(st.empty()){
+    //             break;
+    //         }
+    //         node = st.top();
+    //         st.pop();
+    //         in.push_back(node->val);
+    //         node = node->right;
+    //         }
+    //     }
+    // return in;     
 
+
+    // <------------------ Recursive Approach ------------------>
+
+    // Algorithm : In Inorder traversal, the tree is traversed in this way:
+    //             left, root, right
+
+
+    // Step 1: First visit the left child and go till we find a leaf node.
+    // Step 2: then  print that node
+    // Step 3: recursively visit the right child.
+    // Step 4: if node == NULL 
+    //         then return to it's parent.
+
+
+        //  __________________________________________
+        // |                                          |
+        // |  Time Complexity = O(N)                  |  //running a single loop
+		// |  Space Complexity = O(N)                 |  
+		// |__________________________________________|
+
+    vector<int>in;
+    inorder(root,in);
+    return in;
 }
